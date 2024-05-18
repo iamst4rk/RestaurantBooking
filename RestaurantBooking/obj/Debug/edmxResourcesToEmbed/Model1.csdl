@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id_Coupon" />
+    </Key>
+    <Property Name="Id_Coupon" Type="Int64" Nullable="false" />
+    <Property Name="Coupon1" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Order_Coupon" Relationship="Self.FK__Order_Cou__Id_Co__70099B30" FromRole="Coupon" ToRole="Order_Coupon" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id_Menu" />
+    </Key>
+    <Property Name="Id_Menu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Сomposition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Order_Menu" Relationship="Self.FK__Order_Men__Id_Me__6C390A4C" FromRole="Menu" ToRole="Order_Menu" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id_Order" />
+    </Key>
+    <Property Name="Id_Order" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Order_Date" Type="DateTime" Precision="3" />
+    <Property Name="Issued_Order" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Number_Order" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="FullPrice" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Order_Coupon" Relationship="Self.FK__Order_Cou__Id_Or__6F1576F7" FromRole="Order" ToRole="Order_Coupon" />
+    <NavigationProperty Name="Order_Menu" Relationship="Self.FK__Order_Men__Id_Or__6B44E613" FromRole="Order" ToRole="Order_Menu" />
+  </EntityType>
+  <EntityType Name="Order_Coupon">
+    <Key>
+      <PropertyRef Name="Id_Order_Coupon" />
+    </Key>
+    <Property Name="Id_Order_Coupon" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Order" Type="Int64" Nullable="false" />
+    <Property Name="Id_Coupon" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Coupon" Relationship="Self.FK__Order_Cou__Id_Co__70099B30" FromRole="Order_Coupon" ToRole="Coupon" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Order_Cou__Id_Or__6F1576F7" FromRole="Order_Coupon" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order_Menu">
+    <Key>
+      <PropertyRef Name="Id_Order_Menu" />
+    </Key>
+    <Property Name="Id_Order_Menu" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Order" Type="Int64" Nullable="false" />
+    <Property Name="Id_Menu" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK__Order_Men__Id_Me__6C390A4C" FromRole="Order_Menu" ToRole="Menu" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Order_Men__Id_Or__6B44E613" FromRole="Order_Menu" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Order_Cou__Id_Co__70099B30">
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+    <End Role="Order_Coupon" Type="Self.Order_Coupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupon">
+        <PropertyRef Name="Id_Coupon" />
+      </Principal>
+      <Dependent Role="Order_Coupon">
+        <PropertyRef Name="Id_Coupon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Men__Id_Me__6C390A4C">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="Order_Menu" Type="Self.Order_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id_Menu" />
+      </Principal>
+      <Dependent Role="Order_Menu">
+        <PropertyRef Name="Id_Menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Cou__Id_Or__6F1576F7">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Order_Coupon" Type="Self.Order_Coupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id_Order" />
+      </Principal>
+      <Dependent Role="Order_Coupon">
+        <PropertyRef Name="Id_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Men__Id_Or__6B44E613">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Order_Menu" Type="Self.Order_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id_Order" />
+      </Principal>
+      <Dependent Role="Order_Menu">
+        <PropertyRef Name="Id_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Accounting_for_ordersEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Coupon" EntityType="Self.Coupon" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="Order_Coupon" EntityType="Self.Order_Coupon" />
+    <EntitySet Name="Order_Menu" EntityType="Self.Order_Menu" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK__Order_Cou__Id_Co__70099B30" Association="Self.FK__Order_Cou__Id_Co__70099B30">
+      <End Role="Coupon" EntitySet="Coupon" />
+      <End Role="Order_Coupon" EntitySet="Order_Coupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Men__Id_Me__6C390A4C" Association="Self.FK__Order_Men__Id_Me__6C390A4C">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Order_Menu" EntitySet="Order_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Cou__Id_Or__6F1576F7" Association="Self.FK__Order_Cou__Id_Or__6F1576F7">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Order_Coupon" EntitySet="Order_Coupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Men__Id_Or__6B44E613" Association="Self.FK__Order_Men__Id_Or__6B44E613">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Order_Menu" EntitySet="Order_Menu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

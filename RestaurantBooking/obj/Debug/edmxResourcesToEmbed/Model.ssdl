@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище RestaurantBookingModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Auth">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="99" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Booking_ID" />
+    </Key>
+    <Property Name="Booking_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableNum" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar" MaxLength="99" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FoodMenu">
+    <Key>
+      <PropertyRef Name="FoodMenu_ID" />
+    </Key>
+    <Property Name="FoodMenu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Food_Name" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Food_Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Cooking_Time" Type="nvarchar" MaxLength="99" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodMenu_ID" Type="int" Nullable="false" />
+    <Property Name="TableNum" Type="int" Nullable="false" />
+    <Property Name="Sum" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Restaurants">
+    <Key>
+      <PropertyRef Name="Restaurant_ID" />
+    </Key>
+    <Property Name="Restaurant_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Restaurant_Profile" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Tables" Type="int" Nullable="false" />
+    <Property Name="Table_Info" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="FoodMenu_ID" Type="int" Nullable="false" />
+    <Property Name="Booking_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="99" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Booking__User_ID__29572725">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__FoodMenu___2E1BDC42">
+    <End Role="FoodMenu" Type="Self.FoodMenu" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodMenu">
+        <PropertyRef Name="FoodMenu_ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="FoodMenu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Restauran__Booki__31EC6D26">
+    <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+    <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="Booking_ID" />
+      </Principal>
+      <Dependent Role="Restaurants">
+        <PropertyRef Name="Booking_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Restauran__FoodM__30F848ED">
+    <End Role="FoodMenu" Type="Self.FoodMenu" Multiplicity="1" />
+    <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodMenu">
+        <PropertyRef Name="FoodMenu_ID" />
+      </Principal>
+      <Dependent Role="Restaurants">
+        <PropertyRef Name="FoodMenu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__Login__267ABA7A">
+    <End Role="Auth" Type="Self.Auth" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Auth">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище RestaurantBookingModelContainer">
+    <EntitySet Name="Auth" EntityType="Self.Auth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FoodMenu" EntityType="Self.FoodMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Booking__User_ID__29572725" Association="Self.FK__Booking__User_ID__29572725">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__FoodMenu___2E1BDC42" Association="Self.FK__Order__FoodMenu___2E1BDC42">
+      <End Role="FoodMenu" EntitySet="FoodMenu" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Restauran__Booki__31EC6D26" Association="Self.FK__Restauran__Booki__31EC6D26">
+      <End Role="Booking" EntitySet="Booking" />
+      <End Role="Restaurants" EntitySet="Restaurants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Restauran__FoodM__30F848ED" Association="Self.FK__Restauran__FoodM__30F848ED">
+      <End Role="FoodMenu" EntitySet="FoodMenu" />
+      <End Role="Restaurants" EntitySet="Restaurants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__Login__267ABA7A" Association="Self.FK__Users__Login__267ABA7A">
+      <End Role="Auth" EntitySet="Auth" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

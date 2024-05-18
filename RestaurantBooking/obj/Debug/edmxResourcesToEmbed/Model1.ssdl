@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Model1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id_Coupon" />
+    </Key>
+    <Property Name="Id_Coupon" Type="bigint" Nullable="false" />
+    <Property Name="Coupon" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Image" Type="image" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id_Menu" />
+    </Key>
+    <Property Name="Id_Menu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Сomposition" Type="nvarchar(max)" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="image" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id_Order" />
+    </Key>
+    <Property Name="Id_Order" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Order_Date" Type="datetime" />
+    <Property Name="Issued_Order" Type="datetime" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Number_Order" Type="nvarchar" MaxLength="4" />
+    <Property Name="FullPrice" Type="money" />
+  </EntityType>
+  <EntityType Name="Order_Coupon">
+    <Key>
+      <PropertyRef Name="Id_Order_Coupon" />
+    </Key>
+    <Property Name="Id_Order_Coupon" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Order" Type="bigint" Nullable="false" />
+    <Property Name="Id_Coupon" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order_Menu">
+    <Key>
+      <PropertyRef Name="Id_Order_Menu" />
+    </Key>
+    <Property Name="Id_Order_Menu" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Order" Type="bigint" Nullable="false" />
+    <Property Name="Id_Menu" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Order_Cou__Id_Co__70099B30">
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+    <End Role="Order_Coupon" Type="Self.Order_Coupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupon">
+        <PropertyRef Name="Id_Coupon" />
+      </Principal>
+      <Dependent Role="Order_Coupon">
+        <PropertyRef Name="Id_Coupon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Cou__Id_Or__6F1576F7">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Order_Coupon" Type="Self.Order_Coupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id_Order" />
+      </Principal>
+      <Dependent Role="Order_Coupon">
+        <PropertyRef Name="Id_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Men__Id_Me__6C390A4C">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="Order_Menu" Type="Self.Order_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id_Menu" />
+      </Principal>
+      <Dependent Role="Order_Menu">
+        <PropertyRef Name="Id_Menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_Men__Id_Or__6B44E613">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Order_Menu" Type="Self.Order_Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id_Order" />
+      </Principal>
+      <Dependent Role="Order_Menu">
+        <PropertyRef Name="Id_Order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Model1Container">
+    <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order_Coupon" EntityType="Self.Order_Coupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order_Menu" EntityType="Self.Order_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Order_Cou__Id_Co__70099B30" Association="Self.FK__Order_Cou__Id_Co__70099B30">
+      <End Role="Coupon" EntitySet="Coupon" />
+      <End Role="Order_Coupon" EntitySet="Order_Coupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Cou__Id_Or__6F1576F7" Association="Self.FK__Order_Cou__Id_Or__6F1576F7">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Order_Coupon" EntitySet="Order_Coupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Men__Id_Me__6C390A4C" Association="Self.FK__Order_Men__Id_Me__6C390A4C">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Order_Menu" EntitySet="Order_Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_Men__Id_Or__6B44E613" Association="Self.FK__Order_Men__Id_Or__6B44E613">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Order_Menu" EntitySet="Order_Menu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

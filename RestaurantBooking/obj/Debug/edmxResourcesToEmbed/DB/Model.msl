@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Accounting_for_ordersEntities">
+    <EntitySetMapping Name="Coupon">
+      <EntityTypeMapping TypeName="Model.Coupon">
+        <MappingFragment StoreEntitySet="Coupon">
+          <ScalarProperty Name="Id_Coupon" ColumnName="Id_Coupon" />
+          <ScalarProperty Name="Coupon1" ColumnName="Coupon" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="Model.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Id_Menu" ColumnName="Id_Menu" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Сomposition" ColumnName="Сomposition" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="Model.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Issued_Order" ColumnName="Issued_Order" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Number_Order" ColumnName="Number_Order" />
+          <ScalarProperty Name="FullPrice" ColumnName="FullPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Coupon">
+      <EntityTypeMapping TypeName="Model.Order_Coupon">
+        <MappingFragment StoreEntitySet="Order_Coupon">
+          <ScalarProperty Name="Id_Order_Coupon" ColumnName="Id_Order_Coupon" />
+          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+          <ScalarProperty Name="Id_Coupon" ColumnName="Id_Coupon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Menu">
+      <EntityTypeMapping TypeName="Model.Order_Menu">
+        <MappingFragment StoreEntitySet="Order_Menu">
+          <ScalarProperty Name="Id_Order_Menu" ColumnName="Id_Order_Menu" />
+          <ScalarProperty Name="Id_Order" ColumnName="Id_Order" />
+          <ScalarProperty Name="Id_Menu" ColumnName="Id_Menu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Auth">
+      <EntityTypeMapping TypeName="Model.Auth">
+        <MappingFragment StoreEntitySet="Auth">
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

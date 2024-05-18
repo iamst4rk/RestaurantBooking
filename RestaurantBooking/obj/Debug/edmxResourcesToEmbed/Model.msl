@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище RestaurantBookingModelContainer" CdmEntityContainer="RestaurantBookingEntities">
+    <EntitySetMapping Name="Auth">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Auth">
+        <MappingFragment StoreEntitySet="Auth">
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Booking">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="Booking_ID" ColumnName="Booking_ID" />
+          <ScalarProperty Name="TableNum" ColumnName="TableNum" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodMenu">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.FoodMenu">
+        <MappingFragment StoreEntitySet="FoodMenu">
+          <ScalarProperty Name="FoodMenu_ID" ColumnName="FoodMenu_ID" />
+          <ScalarProperty Name="Food_Name" ColumnName="Food_Name" />
+          <ScalarProperty Name="Food_Description" ColumnName="Food_Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Cooking_Time" ColumnName="Cooking_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="FoodMenu_ID" ColumnName="FoodMenu_ID" />
+          <ScalarProperty Name="TableNum" ColumnName="TableNum" />
+          <ScalarProperty Name="Sum" ColumnName="Sum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurants">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Restaurants">
+        <MappingFragment StoreEntitySet="Restaurants">
+          <ScalarProperty Name="Restaurant_ID" ColumnName="Restaurant_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Restaurant_Profile" ColumnName="Restaurant_Profile" />
+          <ScalarProperty Name="Tables" ColumnName="Tables" />
+          <ScalarProperty Name="Table_Info" ColumnName="Table_Info" />
+          <ScalarProperty Name="FoodMenu_ID" ColumnName="FoodMenu_ID" />
+          <ScalarProperty Name="Booking_ID" ColumnName="Booking_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище RestaurantBookingModelContainer" CdmEntityContainer="RestaurantBookingEntities">
+    <EntitySetMapping Name="Auth">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Auth">
+        <MappingFragment StoreEntitySet="Auth">
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coupon">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Coupon">
+        <MappingFragment StoreEntitySet="Coupon">
+          <ScalarProperty Name="Coupon_ID" ColumnName="Coupon_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Menu_ID" ColumnName="Menu_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="FullPrice" ColumnName="FullPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderCoupon">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.OrderCoupon">
+        <MappingFragment StoreEntitySet="OrderCoupon">
+          <ScalarProperty Name="OrderCoupon_ID" ColumnName="OrderCoupon_ID" />
+          <ScalarProperty Name="Coupon_ID" ColumnName="Coupon_ID" />
+          <ScalarProperty Name="Menu_ID" ColumnName="Menu_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderMenu">
+      <EntityTypeMapping TypeName="RestaurantBookingModel.OrderMenu">
+        <MappingFragment StoreEntitySet="OrderMenu">
+          <ScalarProperty Name="OrderMenu_ID" ColumnName="OrderMenu_ID" />
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Menu_ID" ColumnName="Menu_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

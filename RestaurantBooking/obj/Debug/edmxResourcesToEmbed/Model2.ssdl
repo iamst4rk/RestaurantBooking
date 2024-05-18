@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище RestaurantBookingModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Auth">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="nvarchar" MaxLength="99" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="99" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Coupon_ID" />
+    </Key>
+    <Property Name="Coupon_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Image" Type="image" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Menu_ID" />
+    </Key>
+    <Property Name="Menu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Image" Type="image" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="FullPrice" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderCoupon">
+    <Key>
+      <PropertyRef Name="OrderCoupon_ID" />
+    </Key>
+    <Property Name="OrderCoupon_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Coupon_ID" Type="int" Nullable="false" />
+    <Property Name="Menu_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderMenu">
+    <Key>
+      <PropertyRef Name="OrderMenu_ID" />
+    </Key>
+    <Property Name="OrderMenu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Order_ID" Type="int" Nullable="false" />
+    <Property Name="Menu_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__OrderCoup__Coupo__2E1BDC42">
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+    <End Role="OrderCoupon" Type="Self.OrderCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupon">
+        <PropertyRef Name="Coupon_ID" />
+      </Principal>
+      <Dependent Role="OrderCoupon">
+        <PropertyRef Name="Coupon_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderCoup__Menu___2F10007B">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="OrderCoupon" Type="Self.OrderCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Menu_ID" />
+      </Principal>
+      <Dependent Role="OrderCoupon">
+        <PropertyRef Name="Menu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderMenu__Menu___2B3F6F97">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="OrderMenu" Type="Self.OrderMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Menu_ID" />
+      </Principal>
+      <Dependent Role="OrderMenu">
+        <PropertyRef Name="Menu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderMenu__Order__2A4B4B5E">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderMenu" Type="Self.OrderMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="OrderMenu">
+        <PropertyRef Name="Order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище RestaurantBookingModelContainer">
+    <EntitySet Name="Auth" EntityType="Self.Auth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderCoupon" EntityType="Self.OrderCoupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderMenu" EntityType="Self.OrderMenu" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__OrderCoup__Coupo__2E1BDC42" Association="Self.FK__OrderCoup__Coupo__2E1BDC42">
+      <End Role="Coupon" EntitySet="Coupon" />
+      <End Role="OrderCoupon" EntitySet="OrderCoupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderCoup__Menu___2F10007B" Association="Self.FK__OrderCoup__Menu___2F10007B">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="OrderCoupon" EntitySet="OrderCoupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderMenu__Menu___2B3F6F97" Association="Self.FK__OrderMenu__Menu___2B3F6F97">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="OrderMenu" EntitySet="OrderMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderMenu__Order__2A4B4B5E" Association="Self.FK__OrderMenu__Order__2A4B4B5E">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderMenu" EntitySet="OrderMenu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
