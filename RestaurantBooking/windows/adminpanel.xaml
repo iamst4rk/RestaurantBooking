@@ -38,7 +38,7 @@
             <Label FontSize="20" Foreground="White" Content="Панель" HorizontalAlignment="Left" Margin="25 0 0 0" FontFamily="Great Vibes" Width="120"/>
             <Label FontSize="20" Foreground="White" Content="управления" HorizontalAlignment="Left" Margin="10 0 0 0" FontFamily="Great Vibes" Width="120"/>
             <Image Width="75" Height="75" Margin="120 -65 0 0" Source="/res/main_icon.png"/>
-            <!--<Label FontSize="15" Foreground="White" Content="qwe" HorizontalAlignment="Left" Margin="40 245 0 0" FontFamily="Great Vibes" Width="120" Height="30" x:Name="lblName"/>-->
+            <!--<Label  FontSize="15" Foreground="White" Content="qwe" HorizontalAlignment="Left" Margin="40 245 0 0" FontFamily="Great Vibes" Width="120" Height="30" x:Name="lblName"/>-->
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="1">
             <Frame Margin="0 -60 0 0" Width="500" Height="325" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1" x:Name="frMain"/>
